@@ -146,6 +146,11 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). We welcome:
 }
 ```
 
+## Strategy & Business
+
+- [Product Requirements Document (PRD)](docs/PRD.md) -- comprehensive product, market, and business strategy
+- [Why Big Companies Can't Move Fast](WHY-BIG-COMPANIES-CANT-MOVE-FAST.md) -- our structural advantages
+
 ## References
 
 1. Lachaux et al. (1999) -- *Measuring phase synchrony in brain signals*
