@@ -82,8 +82,9 @@ def compute_band_power(data: np.ndarray, fs: float, low: float, high: float) -> 
     """Compute relative power in a frequency band."""
     freqs, psd = compute_spectral_power(data, fs)
     band_mask = (freqs >= low) & (freqs <= high)
-    total_power = np.trapz(psd, freqs)
-    band_power = np.trapz(psd[band_mask], freqs[band_mask])
+    _trapz = np.trapezoid if hasattr(np, 'trapezoid') else np.trapz
+    total_power = _trapz(psd, freqs)
+    band_power = _trapz(psd[band_mask], freqs[band_mask])
     return float(band_power / total_power) if total_power > 0 else 0.0
 
 
@@ -780,12 +781,7 @@ If you use this tool in your research, please cite:
 - Issues: [GitHub Issues](https://github.com/Taurus-Ai-Corp)
             """)
 
-    # Auto-run on load
-    demo.load(
-        fn=run_analysis,
-        inputs=[preset, duration, fs, theta_amp, gamma_amp, noise_level, seed,
-                theta_low, theta_high, gamma_low, gamma_high, csv_upload],
-        outputs=[plot_output, report_output]
-    )
+    # NOTE: Removed demo.load() auto-run to prevent startup crashes from
+    # breaking the Gradio API. Users click "Run Coherence Analysis" to start.
 
 demo.launch()
