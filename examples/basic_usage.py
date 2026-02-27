@@ -39,7 +39,7 @@ def main():
 
     print(f"\n  Global Coherence Score: {score:.4f}")
     print(f"  Status: {status}")
-    print(f"  Healthy threshold: >= 0.90")
+    print("  Healthy threshold: >= 0.90")
 
     # Custom frequency bands (e.g., alpha-gamma coupling)
     alpha_gamma_score = tracker.calculate_global_coherence(

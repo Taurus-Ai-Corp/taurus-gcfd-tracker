@@ -22,9 +22,7 @@ import matplotlib.pyplot as plt
 from matplotlib.gridspec import GridSpec
 import io
 import csv
-import json
 from dataclasses import dataclass
-from typing import Optional
 
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
