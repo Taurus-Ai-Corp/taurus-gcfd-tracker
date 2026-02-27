@@ -1,0 +1,28 @@
+name: Sync to HuggingFace Space
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "app/app.py"
+      - "taurus_gcfd.py"
+      - "requirements.txt"
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    env:
+      HF_TOKEN: ${{ secrets.HF_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Push to HuggingFace Space
+        run: |
+          if [ -z "$HF_TOKEN" ]; then
+            echo "HF_TOKEN not set -- skipping sync"
+            exit 0
+          fi
+          pip install huggingface_hub[cli]
+          mkdir -p .hf_staging
+          cp app/app.py .hf_staging/app.py
+          cp requirements.txt .hf_staging/requirements.txt
+          huggingface-cli upload Taurus-Ai-Corp/gcfd-coherence-tracker .hf_staging . --repo-type space --token "$HF_TOKEN"

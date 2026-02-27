@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install ruff
+      - run: ruff check taurus_gcfd.py app/app.py examples/
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install numpy scipy matplotlib
+      - name: Smoke test
+        run: |
+          python -c "
+          from taurus_gcfd import CoherenceTracker, datasets
+          data = datasets.load_sample_eeg('test')
+          tracker = CoherenceTracker(sampling_rate=250)
+          score = tracker.calculate_global_coherence(data)
+          assert 0.0 <= score <= 1.0, f'Score out of range: {score}'
+          print(f'CI: coherence score = {score:.3f} -- PASS')
+          "
+      - name: Run example script
+        run: python examples/basic_usage.py
+
+  ip-guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: IP guard scan
+        run: |
+          BLOCKED_TERMS="PosnerQPUSimulator|AKQS|HQGP|NACRS|HederaHCSMock|DQSB_MasterController|DQSBOrchestrator|PQCLayer|viscoelastic|sol-gel|decay_constant|55\.4|Kyber|Posner.*qubit"
+          MATCHES=$(grep -rn -E "$BLOCKED_TERMS" --include="*.py" --include="*.md" --exclude-dir=.git --exclude=".gitignore" --exclude="ip_guard_hook.sh" . || true)
+          if [ -n "$MATCHES" ]; then
+            echo "IP GUARD VIOLATION"
+            echo "$MATCHES"
+            exit 1
+          else
+            echo "IP guard: CLEAN"
+          fi

@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - name: "TAURUS AI Corp"
+title: "taurus-gcfd-tracker: Generalized Cross-Frequency Decomposition for EEG/MEG Coherence"
+version: 1.0.0
+date-released: 2026-02-27
+url: "https://github.com/Taurus-Ai-Corp/taurus-gcfd-tracker"
+license: Apache-2.0
+type: software
+keywords:
+  - eeg
+  - meg
+  - neuroscience
+  - phase-synchronization
+  - coherence
+  - plv
+  - theta-gamma
+  - signal-processing

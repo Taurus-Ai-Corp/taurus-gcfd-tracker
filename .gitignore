@@ -1,0 +1,75 @@
+# ── IP PROTECTION — NEVER COMMIT THESE ─────────────────────
+# Core trade secret simulators
+posner_qpu_sim*
+dqsb_orchestrator*
+dqsb_master_controller*
+dqsb_*
+zk_coherence_verifier*
+zk_*
+
+# Patent and legal documents
+patent_AKQS*
+patent_HQGP*
+patent_*
+ARXIV-DRAFT*
+CLINICAL_DATA*
+*partnership_proposal*
+
+# Strategy and business docs
+*INVESTOR*
+*REVENUE*
+*PRODUCTION-READY*
+*BLUEPRINT*
+*STRATEGY*
+*GTM*
+
+# Sales data
+pqc-leads/
+leads.csv
+leads_report.json
+outreach_emails.json
+
+# Research with IP terms
+NoteBookLM/
+DEVOPS_VAULT/
+QUANTUM_IP_VAULT/
+.hf_space_staging/
+
+# Internal AI context
+CLAUDE.md
+.claude/
+
+# Slide decks
+*.pdf
+
+# ── Standard ignores ───────────────────────────────────────
+# Environment
+.env
+.env.*
+*.pem
+*.key
+secrets/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+
+# macOS
+.DS_Store
+.AppleDouble
+
+# Logs
+firebase-debug.log
+*.log
+
+# Editor
+.idea/
+.vscode/
+*.swp
