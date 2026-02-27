@@ -719,9 +719,9 @@ curl -X POST https://Taurus-Ai-Corp-gcfd-coherence-tracker.hf.space/api/predict 
 | Tier | Rate | Access |
 |------|------|--------|
 | Free (this Space) | 50 requests/day | Open |
-| Researcher ($29/mo) | 1,000 requests/day | [Contact us](mailto:research@taurusai.io) |
-| Clinical ($149/mo) | 10,000 requests/day + batch | [Contact us](mailto:research@taurusai.io) |
-| Enterprise | Unlimited + SLA | [Contact us](mailto:research@taurusai.io) |
+| Researcher ($29/mo) | 1,000 requests/day | [Contact us](mailto:admin@taurusai.io) |
+| Clinical ($149/mo) | 10,000 requests/day + batch | [Contact us](mailto:admin@taurusai.io) |
+| Enterprise | Unlimited + SLA | [Contact us](mailto:admin@taurusai.io) |
 
 ### Upcoming Features (v2.0)
 
@@ -775,8 +775,8 @@ If you use this tool in your research, please cite:
 
 ### Contact
 
-- Research inquiries: research@taurusai.io
-- Enterprise licensing: sales@taurusai.io
+- Research inquiries: admin@taurusai.io
+- Enterprise licensing: admin@taurusai.io
 - Issues: [GitHub Issues](https://github.com/Taurus-Ai-Corp)
             """)
 

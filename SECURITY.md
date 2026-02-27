@@ -8,7 +8,7 @@
 
 ## Reporting a Vulnerability
 
-Email **security@taurusai.io** with subject line `SECURITY — taurus-gcfd-tracker`.
+Email **admin@taurusai.io** with subject line `SECURITY — taurus-gcfd-tracker`.
 
 Do not open a public GitHub issue for security vulnerabilities.
 

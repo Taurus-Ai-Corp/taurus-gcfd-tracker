@@ -122,7 +122,7 @@ This library is **Apache 2.0** for individual, academic, and research use.
 | Clinical | 10,000 req/day + batch | $149/mo |
 | Enterprise | Unlimited + SLA | Contact us |
 
-Contact: [enterprise@taurusai.io](mailto:enterprise@taurusai.io)
+Contact: [admin@taurusai.io](mailto:admin@taurusai.io)
 See [LICENSE-ENTERPRISE](LICENSE-ENTERPRISE) for terms.
 
 ## Contributing
