@@ -2,10 +2,16 @@ cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 authors:
   - name: "TAURUS AI Corp"
+    # TODO: Add individual author before JOSS submission:
+    # - given-names: [First]
+    #   family-names: [Last]
+    #   orcid: https://orcid.org/0000-0000-0000-0000
 title: "taurus-gcfd-tracker: Generalized Cross-Frequency Decomposition for EEG/MEG Coherence"
+abstract: "An open-source Python library for computing cross-frequency phase synchronization (PLV) from EEG/MEG signals, with clinical presets for 8 neurological conditions and an interactive web dashboard."
 version: 1.0.0
 date-released: 2026-02-27
 url: "https://github.com/Taurus-Ai-Corp/taurus-gcfd-tracker"
+repository-code: "https://github.com/Taurus-Ai-Corp/taurus-gcfd-tracker"
 license: Apache-2.0
 type: software
 keywords:
@@ -17,3 +23,5 @@ keywords:
   - plv
   - theta-gamma
   - signal-processing
+  - cross-frequency-coupling
+  - biomarker

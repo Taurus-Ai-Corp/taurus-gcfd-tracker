@@ -24,17 +24,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install numpy scipy matplotlib
-      - name: Smoke test
-        run: |
-          python -c "
-          from taurus_gcfd import CoherenceTracker, datasets
-          data = datasets.load_sample_eeg('test')
-          tracker = CoherenceTracker(sampling_rate=250)
-          score = tracker.calculate_global_coherence(data)
-          assert 0.0 <= score <= 1.0, f'Score out of range: {score}'
-          print(f'CI: coherence score = {score:.3f} -- PASS')
-          "
+      - run: pip install numpy scipy matplotlib pytest
+      - name: Run pytest suite
+        run: python -m pytest tests/ -v
       - name: Run example script
         run: python examples/basic_usage.py
 

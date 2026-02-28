@@ -4,6 +4,8 @@
 [![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/downloads/)
 [![HuggingFace Space](https://img.shields.io/badge/%F0%9F%A4%97%20HF%20Space-Live%20Demo-yellow)](https://huggingface.co/spaces/Taurus-Ai-Corp/gcfd-coherence-tracker)
 [![CI](https://github.com/Taurus-Ai-Corp/taurus-gcfd-tracker/actions/workflows/ci.yml/badge.svg)](https://github.com/Taurus-Ai-Corp/taurus-gcfd-tracker/actions)
+[![JOSS](https://img.shields.io/badge/JOSS-submitted-green.svg)](https://joss.theoj.org/)
+[![Dataset](https://img.shields.io/badge/%F0%9F%A4%97%20Dataset-gcfd--synthetic--eeg-orange)](https://huggingface.co/datasets/Taurus-Ai-Corp/gcfd-synthetic-eeg)
 
 **Generalized Cross-Frequency Decomposition (GCFD) for EEG/MEG phase synchronization.**
 
@@ -99,6 +101,31 @@ result = client.predict(
 
 Generates synthetic EEG data (2500 samples at 250 Hz) for testing.
 
+## Datasets
+
+Synthetic EEG datasets for 7 clinical conditions are available on HuggingFace:
+
+[**Bio-Quantum Eigenmodes: Healthy Brainwave Signatures for Therapeutic Entrainment**](https://huggingface.co/datasets/Taurus-Ai-Corp/gcfd-synthetic-eeg)
+
+Each CSV contains a 10-second, single-channel EEG signal at 250 Hz with theta-gamma phase-amplitude coupling. Conditions: Healthy Adult, MDD, MCI/Alzheimer's, Epileptic Seizure, Meditation, Anesthesia (Propofol), ADHD.
+
+```bash
+# Generate datasets locally
+python scripts/generate_dataset.py
+
+# Generate and upload to HuggingFace
+python scripts/generate_dataset.py --upload
+```
+
+## Testing
+
+```bash
+pip install pytest
+python -m pytest tests/ -v
+```
+
+The test suite covers core coherence computation, bandpass filtering, PLV calculation, sliding window analysis, and all clinical presets.
+
 ## Community Validation
 
 We invite the neuro-tech and neuroscience communities to test this tool against clinical datasets to independently verify theta-gamma phase synchronization patterns using the PLV methodology.
@@ -145,11 +172,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). We welcome:
   url          = {https://github.com/Taurus-Ai-Corp/taurus-gcfd-tracker}
 }
 ```
-
-## Strategy & Business
-
-- [Product Requirements Document (PRD)](docs/PRD.md) -- comprehensive product, market, and business strategy
-- [Why Big Companies Can't Move Fast](WHY-BIG-COMPANIES-CANT-MOVE-FAST.md) -- our structural advantages
 
 ## References
 
