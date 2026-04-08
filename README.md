@@ -64,6 +64,36 @@ print(f"Global Coherence: {score:.3f}")
 tracker.plot_eigenmodes(data, target_frequency='theta_gamma')
 ```
 
+## PAC Analysis Module
+
+The `pac_analysis` module provides publication-standard Phase-Amplitude Coupling analysis with robust artifact rejection.
+
+### Features
+
+- **Tort Modulation Index** (Tort et al. 2010) — KL-divergence-based PAC metric, the peer-reviewed standard
+- **Normalized Mean Vector Length** (Cohen 2008) — O(n) real-time coupling metric
+- **4-Stage Artifact Rejection** addressing Aru et al. (2015) criticisms:
+  1. Butterworth bandpass filtering (waveform shape control)
+  2. Time-shift surrogate statistics (200 surrogates, 95th percentile)
+  3. Phase-shuffle null model (tonic vs phasic coupling test)
+  4. Effect-size thresholding (MI > 0.01)
+- **Comodulogram visualization** — frequency-sweep heatmap for manuscript figures
+
+### Usage
+
+```python
+from pac_analysis import PACAnalyzer, plot_comodulogram
+
+# Analyze EEG with full artifact rejection
+analyzer = PACAnalyzer(fs=250)
+result = analyzer.analyze(eeg_data)
+print(f"MI: {result['mi']:.4f}, Genuine: {result['is_genuine']}")
+
+# Generate publication-ready comodulogram
+fig = plot_comodulogram(eeg_data, fs=250)
+fig.savefig("comodulogram.png", dpi=150)
+```
+
 ## Live Demo
 
 Try the interactive Gradio app with 8 clinical presets:
@@ -178,6 +208,10 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). We welcome:
 1. Lachaux et al. (1999) -- *Measuring phase synchrony in brain signals*
 2. Canolty et al. (2006) -- *High gamma power is phase-locked to theta oscillations*
 3. Tort et al. (2010) -- *Measuring phase-amplitude coupling between neuronal oscillations*
+4. Tort, A.B.L. et al. (2010) -- *Measuring phase-amplitude coupling.* J Neurophysiol 104:1195-1210.
+5. Canolty, R.T. et al. (2006) -- *High gamma power is phase-locked to theta.* Science 313:1626-1628.
+6. Cohen, M.X. (2008) -- *Assessing transient cross-frequency coupling.* J Neurosci Methods 168:494-499.
+7. Aru, J. et al. (2015) -- *Untangling cross-frequency coupling.* Curr Opin Neurobiol 31:51-61.
 
 ## License
 

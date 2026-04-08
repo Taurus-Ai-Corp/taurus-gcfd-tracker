@@ -53,6 +53,8 @@ BLOCKED_FILES=(
     "CLINICAL_DATA"
     "ARXIV-DRAFT"
     "partnership_proposal"
+    "posner_null_model"
+    "causal_chain"
 )
 
 # ── BLOCKED CONTENT TERMS ──────────────────────────────────
@@ -81,6 +83,10 @@ BLOCKED_TERMS=(
     "governance_audit"
     "coherence_verifier"
     "Kyber"
+    "PosnerNullModel"
+    "CausalChainSimulator"
+    "plot_null_model_comparison"
+    "quantum.*classical.*hypothesis"
 )
 
 VIOLATIONS=0
@@ -113,9 +119,17 @@ while IFS= read -r file; do
 done <<< "$FILES"
 
 # Check file contents
+# Known false positives: ci.yml defines the blocklist itself, ip_guard_hook.sh
+# lists terms in help text and array definitions. Skip these files.
+SKIP_CONTENT_SCAN=".github/workflows/ci.yml|tools/ip_guard_hook.sh"
+
 while IFS= read -r file; do
     [[ -z "$file" ]] && continue
     [[ ! -f "$file" ]] && continue
+    # Skip known false-positive files (they define the blocklist)
+    if echo "$file" | grep -qE "$SKIP_CONTENT_SCAN"; then
+        continue
+    fi
 
     for term in "${BLOCKED_TERMS[@]}"; do
         if grep -qE "$term" "$file" 2>/dev/null; then

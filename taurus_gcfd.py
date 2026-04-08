@@ -46,6 +46,21 @@ class CoherenceTracker:
         
         return coherence_metric
 
+    def analyze_with_rejection(self, eeg_data, n_surrogates=200, rng=None):
+        """Full 4-stage artifact-rejected PAC analysis.
+
+        Uses Tort MI (Tort et al. 2010) with surrogate significance testing
+        and effect-size thresholding.
+
+        Returns:
+            dict: mi, mvl, is_genuine, surrogate_threshold, reason
+        """
+        from pac_analysis import PACAnalyzer
+        if hasattr(eeg_data, 'ndim') and eeg_data.ndim > 1:
+            eeg_data = eeg_data[0]
+        analyzer = PACAnalyzer(fs=self.fs, n_surrogates=n_surrogates)
+        return analyzer.analyze(eeg_data, rng=rng)
+
     def plot_eigenmodes(self, data, target_frequency='theta_gamma'):
         """Visualize the coherence gap."""
         print(f"Visualizing spatio-spectral eigenmodes for {target_frequency} coupling...")
